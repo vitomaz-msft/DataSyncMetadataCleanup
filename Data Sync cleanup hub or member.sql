@@ -1,6 +1,5 @@
--- Attention: Don't run this unless advised by SQL Data Sync support team
+-- Attention: Don't run this unless advised by SQL Data Sync team
 -- This will clean all objects related to data sync hub or member this database is part of
--- Please make sure this database is not part of any sync group (even from other region or subscription)
 
 declare @n char(1)
 set @n = char(10)

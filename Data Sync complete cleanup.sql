@@ -1,6 +1,5 @@
--- Attention: Don't run this unless advised by SQL Data Sync support team
+-- Attention: Don't run this unless advised by SQL Data Sync team
 -- This will clean all objects related to data sync metadata db, hub or member this database is part of
--- Please make sure this database is not part of any sync group (even from other region or subscription)
 
 declare @n char(1)
 set @n = char(10)
@@ -44,8 +43,7 @@ from sys.tables
 where schema_name(schema_id) = 'dss' or schema_name(schema_id) = 'TaskHosting' or schema_name(schema_id) = 'DataSync'
 
 -- user defined types
-select @udt = isnull( @udt + @n, '' ) +
-    'drop type [' + schema_name(schema_id) + '].[' + name + ']'
+select @udt = isnull( @udt + @n, '' ) + 'drop type [' + schema_name(schema_id) + '].[' + name + ']'
 from sys.types
 where is_user_defined = 1
 and schema_name(schema_id) = 'dss' or schema_name(schema_id) = 'TaskHosting' or schema_name(schema_id) = 'DataSync'
