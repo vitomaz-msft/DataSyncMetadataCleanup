@@ -10,6 +10,6 @@ Use 'Data Sync cleanup hub or member.sql' only when:
 - You need to delete everything related to all the sync groups from the database (this will keep sync metadata DB related objects in case the database is also the sync metadata DB).
 
 Use ‘cleanup data sync object V2.sql' to:
--Generate cleanup scripts for a specific table (also supports generating for all the tables but will not clean scope and provision marker information).
+- Generate cleanup scripts for a specific table (also supports generating for all the tables but will not clean scope and provision marker information).
 
 In case you have multiple sync groups and do not want to remove everything or are unsure about what you should remove, please run https://github.com/vitomaz-msft/DataSyncHealthChecker and share the results with the support team.
