@@ -1,5 +1,7 @@
--- Attention: Don't run this unless advised by SQL Data Sync team
 -- This will clean all objects related to data sync metadata db, hub or member this database is part of
+-- Use only when:
+-- -> Exporting a database that is/was used as SQL Data Sync metadata database (more details at https://blogs.msdn.microsoft.com/azuresqldbsupport/2018/08/11/exporting-a-database-that-is-was-used-as-sql-data-sync-metadata-database/)
+-- -> Advised by the support team during a support request
 
 declare @n char(1)
 set @n = char(10)
