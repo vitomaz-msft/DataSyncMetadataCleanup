@@ -90,6 +90,8 @@ DROP SCHEMA IF EXISTS [DataSync]
 GO
 DROP USER IF EXISTS [##MS_SyncAccount##]
 GO
+DROP USER IF EXISTS [##MS_SyncResourceManager##]
+GO
 DROP ROLE IF EXISTS [DataSync_admin]
 GO
 DROP ROLE IF EXISTS [DataSync_executor]
