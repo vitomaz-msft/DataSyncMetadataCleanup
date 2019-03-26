@@ -1,7 +1,19 @@
--- This will clean all objects related to data sync metadata db, hub or member this database is part of
--- Use only when:
+-- __          __              _             
+-- \ \        / /             (_)            
+--  \ \  /\  / /_ _ _ __ _ __  _ _ __   __ _ 
+--   \ \/  \/ / _` | '__| '_ \| | '_ \ / _` |
+--    \  /\  / (_| | |  | | | | | | | | (_| |
+--     \/  \/ \__,_|_|  |_| |_|_|_| |_|\__, |
+--                                      __/ |
+--                                     |___/ 
+-- Sync metadata database cannot be deleted or renamed while sync groups or sync agents exist. 
+-- Manually removing them from the database will not guarantee you can delete or rename the database because links from the Azure backend will remain.
+--
+-- This script will immediately clean all objects related to data sync metadata db, hub or member this database is part of
+-- Use ONLY AND ONLY when:
 -- -> Exporting a database that is/was used as SQL Data Sync metadata database (more details at https://blogs.msdn.microsoft.com/azuresqldbsupport/2018/08/11/exporting-a-database-that-is-was-used-as-sql-data-sync-metadata-database/)
 -- -> Advised by the support team during a support request
+/* Please comment this line completely after reading all the warning information*/ RAISERROR (N'Please read the warning information completely first.', -1,-1); RETURN;
 
 declare @n char(1)
 set @n = char(10)
