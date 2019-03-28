@@ -21,7 +21,6 @@ set @n = char(10)
 declare @triggers nvarchar(max)
 declare @procedures nvarchar(max)
 declare @constraints nvarchar(max)
-declare @views nvarchar(max)
 declare @FKs nvarchar(max)
 declare @tables nvarchar(max)
 declare @udt nvarchar(max)
@@ -39,11 +38,6 @@ where schema_name(schema_id) = 'dss' or schema_name(schema_id) = 'TaskHosting' o
 -- check constraints
 select @constraints = isnull( @constraints + @n, '' ) + 'alter table [' + schema_name(schema_id) + '].[' + object_name( parent_object_id ) + ']    drop constraint [' + name + ']'
 from sys.check_constraints
-where schema_name(schema_id) = 'dss' or schema_name(schema_id) = 'TaskHosting' or schema_name(schema_id) = 'DataSync'
-
--- views
-select @views = isnull( @views + @n, '' ) + 'drop view [' + schema_name(schema_id) + '].[' + name + ']'
-from sys.views
 where schema_name(schema_id) = 'dss' or schema_name(schema_id) = 'TaskHosting' or schema_name(schema_id) = 'DataSync'
 
 -- foreign keys
@@ -66,7 +60,6 @@ order by system_type_id desc
 print @triggers
 print @procedures 
 print @constraints 
-print @views 
 print @FKs 
 print @tables
 print @udt 
@@ -75,13 +68,9 @@ exec sp_executesql @triggers
 exec sp_executesql @procedures 
 exec sp_executesql @constraints 
 exec sp_executesql @FKs 
-exec sp_executesql @views 
 exec sp_executesql @tables
 exec sp_executesql @udt 
 
-GO
-declare @n char(1)
-set @n = char(10)
 declare @functions nvarchar(max)
 
 -- functions
@@ -92,27 +81,15 @@ and schema_name(schema_id) = 'dss' or schema_name(schema_id) = 'TaskHosting' or 
 
 print @functions 
 exec sp_executesql @functions 
-GO
 
 DROP SCHEMA IF EXISTS [dss]
-GO
 DROP SCHEMA IF EXISTS [TaskHosting]
-GO
 DROP SCHEMA IF EXISTS [DataSync]
-GO
 DROP USER IF EXISTS [##MS_SyncAccount##]
-GO
 DROP USER IF EXISTS [##MS_SyncResourceManager##]
-GO
 DROP ROLE IF EXISTS [DataSync_admin]
-GO
 DROP ROLE IF EXISTS [DataSync_executor]
-GO
 DROP ROLE IF EXISTS [DataSync_reader]
-GO
-
-declare @n char(1)
-set @n = char(10)
 
 --symmetric_keys
 declare @symmetric_keys nvarchar(max)
@@ -131,6 +108,5 @@ where name like 'DataSyncEncryptionCertificate%'
 
 print @certificates 
 exec sp_executesql @certificates 
-GO
 
 print 'Data Sync clean up finished' 
