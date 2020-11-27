@@ -6,8 +6,9 @@
 --     \/  \/ \__,_|_|  |_| |_|_|_| |_|\__, |
 --                                      __/ |
 --                                     |___/ 
--- Sync metadata database cannot be deleted or renamed while sync groups or sync agents exist. 
+-- If you are here because "Sync metadata database cannot be deleted or renamed while sync groups or sync agents exist", please note that: 
 -- This script WILL NOT help you delete or rename the database because links from the Azure backend will remain.
+-- You need to delete all sync groups (usually existing under other hub databases) and/or sync agents.
 --
 -- This script will immediately clean all objects related to data sync metadata db, hub or member this database is part of
 -- Use ONLY AND ONLY when:
